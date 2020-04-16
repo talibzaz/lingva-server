@@ -1,0 +1,28 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+server:
+  status: true              
+  open: false                 
+  host: localhost            
+  port: 5001
+schema:
+- name: LINGVA
+  path: src/lingva
+  args:
+  - start
+  env:  
+    PORT: 8080
+  commands:
+    run:
+      status: true 
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor

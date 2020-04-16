@@ -1,0 +1,13 @@
+bin/*
+!bin/.gitkeep
+pkg
+files/*
+
+src/lingva/vendor
+src/lingva/gql/generated.go
+src/lingva/gql/models_gen.go
+.DS_Store
+.idea
+.cache
+lingva-server
+

@@ -1,0 +1,158 @@
+# Response is a generic response from a graphql query or mutation
+type Response {
+    id: String!
+    status: Boolean!
+    message: String!
+    token: String!
+    role: String!
+    studentName: String!
+}
+
+type Student {
+  id: String!
+  studentName: String!
+  status: Int!
+  teacherId: String!
+  parentName: String!
+  username: String!
+  password: String!
+  teacherName: String!
+  imageUrl: String!
+}
+
+type Teacher {
+    id: String!
+    name: String!
+    subject: String!
+    username: String!
+    password: String!
+    count: Int!
+}
+
+type StudentReport {
+    id: String!
+    studentId: String!
+    hwCompletion: String!
+    date: String!
+    vocabularyCompletion: String!
+    classParticipation: String!
+    dictionaryUse: String!
+    conversationClub: Boolean!
+    workshops: Boolean!
+    movieClub: Boolean!
+    readingClub: Boolean!
+    markRead: Boolean!
+    testCorrection: String!
+    feedback: String!
+    teacherId: String!
+    Type: String!
+}
+
+type StudentList {
+    id: String!
+    name: String!
+    date: String!
+    subject: String!
+    teacher: String!
+    imageUrl: String!
+}
+
+type TestResults {
+    id: String!
+    studentId: String!
+    reference: String!
+    date: String!
+    totalQuestions: Int!
+    correctAnswers: Float!
+    reportId: String!
+}
+
+type Notification {
+    ID: String!
+    StudentName: String!
+    StudentID: String!
+    Message: String!
+    CreatedAt: String!
+    Type: String!
+}
+
+type Data {
+    studentReport: StudentReport!
+    testResults: [TestResults!]
+}
+
+type Query {
+    getStudentList(teacherId: String!): [StudentList!]
+    testReportsByStudentId(studentId: String!): [StudentReport!]
+    adminNotificationByStudentId(studentId: String!): [Notification!]
+    testReportByReportId(reportId: String!): Data!
+    ###########FOR ADMIN##########
+    getTeacherList: [Teacher!]
+    getTeacherByID(teacherId: String!): Teacher!
+    studentListForAdmin: [StudentList!]
+    studentDetails(studentId: String!): Student!
+    allSentNotifications: [Notification!]
+    notificationsStudentList(createdAt: String!): [String!]
+}
+
+type Mutation {
+    markAsRead(reportId: String!): StudentReport!
+    markNotificationAsRead(notificationId: String!): Notification!
+    saveReport(report: ReportInput, testResults: [TestResultsInput!]): Data!
+    updateReportByReportID(report: ReportInput, testResults: [TestResultsInput!]): StudentReport!
+    ##########FOR ADMIN#############
+    updateTeacherByID(input: TeacherInput!): Response!
+    addNewTeacher(input: TeacherInput!): Response!
+    addNewStudent(input: StudentInput!, imageData: String!): Response!
+    updateStudentByStudentID(input: StudentInput!): Response!
+    sendNotificationToStudents(notifications: [NotificationInput!], message: String!): Response!
+}
+
+input NotificationInput {
+    StudentName: String!
+    StudentID: String!
+}
+
+input ReportInput {
+    id: String!
+    studentId: String!
+    teacherId: String!
+    date: String!
+    hwCompletion: String!
+    vocabularyCompletion: String!
+    classParticipation: String!
+    dictionaryUse: String!
+    testCorrection: String!
+    feedback: String!
+    conversationClub: Boolean!
+    workshops: Boolean!
+    movieClub: Boolean!
+    readingClub: Boolean!
+}
+
+input TestResultsInput {
+    id: String!
+    date: String!
+    reference: String!
+    totalQuestions: Int!
+    correctAnswers: Float!
+    reportId: String
+}
+
+input TeacherInput {
+    id: String!
+    name: String!
+    subject: String!
+    username: String!
+    password: String!
+}
+
+input StudentInput {
+    id: String!
+    name: String!
+    status: Int!
+    teacherId: String!
+    parentName: String!
+    username: String!
+    password: String!
+}

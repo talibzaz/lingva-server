@@ -1,0 +1,29 @@
+schema: schema.graphql
+
+models:
+  Student:
+    model: lingva/database.Student
+  Teacher:
+    model: lingva/database.Teacher
+  StudentReport:
+    model: lingva/database.StudentReport
+  TestResults:
+    model: lingva/database.TestResults
+  Response:
+    model: lingva/database.Response
+  Data:
+    model: lingva/database.Data
+  StudentList:
+    model: lingva/database.StudentList
+  ReportInput:
+    model: lingva/database.ReportInput
+  TestResultsInput:
+    model: lingva/database.TestResultsInput
+  TeacherInput:
+    model: lingva/database.TeacherInput
+  StudentInput:
+    model: lingva/database.StudentInput
+  Notification:
+    model: lingva/database.Notification
+  NotificationInput:
+    model: lingva/database.NotificationInput
